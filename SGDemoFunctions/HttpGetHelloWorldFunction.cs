@@ -13,7 +13,7 @@ namespace SGDemoFunctions
     {
         [FunctionName("HttpGetHelloWorldFunction")]
         public static IActionResult Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "/v1/hello")]HttpRequest req, 
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "v1/hello")]HttpRequest req, 
             TraceWriter log)
         {
             log.Info("C# HTTP trigger function processed a request.");
