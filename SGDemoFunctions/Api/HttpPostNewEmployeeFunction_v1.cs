@@ -27,7 +27,7 @@ namespace SGDemoFunctions.Api
             var repository = CreateRepository();
             var employee = new Employee()
             {
-                Id = Guid.Parse(employeeDto.Id),
+                Id = employeeDto.Id,
                 Name = employeeDto.Name,
                 JobTitle = employeeDto.JobTitle
             };

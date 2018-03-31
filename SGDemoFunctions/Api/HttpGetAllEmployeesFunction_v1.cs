@@ -29,7 +29,7 @@ namespace SGDemoFunctions.Api
             var employeeDtos = employees.Select(e =>
                 new EmployeeDto()
                 {
-                    Id = e.Id.ToString(),
+                    Id = e.Id,
                     Name = e.Name,
                     JobTitle = e.JobTitle
                 });
