@@ -12,6 +12,7 @@ using System.Security.Authentication;
 using SGDemoFunctions.Infrastructure;
 using System.Threading.Tasks;
 using System.Linq;
+using System;
 
 namespace SGDemoFunctions.Api
 {
@@ -28,7 +29,7 @@ namespace SGDemoFunctions.Api
             var employeeDtos = employees.Select(e =>
                 new EmployeeDto()
                 {
-                    Id = e.Id,
+                    Id = e.Id.ToString(),
                     Name = e.Name,
                     JobTitle = e.JobTitle
                 });

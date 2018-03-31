@@ -6,7 +6,7 @@ namespace SGDemoFunctions.Api
 {
     public class EmployeeDto
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string JobTitle { get; set; }
     }
