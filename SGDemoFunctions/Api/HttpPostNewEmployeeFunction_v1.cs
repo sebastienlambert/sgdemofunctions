@@ -24,14 +24,14 @@ namespace SGDemoFunctions.Api
         {
             log.Info($"Post employee : {employeeDto.Id}");
 
-            //var repository = CreateRepository();
-            //var employee = new Employee()
-            //{
-            //    Id = Guid.Parse(employeeDto.Id),
-            //    Name = employeeDto.Name,
-            //    JobTitle = employeeDto.JobTitle
-            //};
-            //await repository.Save(employee);
+            var repository = CreateRepository();
+            var employee = new Employee()
+            {
+                Id = Guid.Parse(employeeDto.Id),
+                Name = employeeDto.Name,
+                JobTitle = employeeDto.JobTitle
+            };
+            await repository.Save(employee);
 
             return new OkResult();
         }
