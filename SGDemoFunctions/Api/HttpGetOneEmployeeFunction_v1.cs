@@ -28,7 +28,7 @@ namespace SGDemoFunctions.Api
             var employee = await repository.FindOneById(Guid.Parse(employeeId));
             var dto = new EmployeeDto
             {
-                Id = employee.Id,
+                Id = employee.Id.ToString(),
                 Name = employee.Name,
                 JobTitle = employee.JobTitle
             };
