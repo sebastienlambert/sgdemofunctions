@@ -19,20 +19,20 @@ namespace SGDemoFunctions.Api
     {
         [FunctionName("HttpPostNewEmployeeFunction_v1")]
         public static async Task<IActionResult> Run(
-            HttpRequest req,
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "v1/employees")] EmployeeDto employeeDto,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "v1/employees")] HttpRequest req,
             TraceWriter log)
         {
-            log.Info($"Post employee : {employeeDto.Id}");
+            log.Info("Post employe");
+            //log.Info($"Post employee : {employeeDto.Id}");
 
-            var repository = CreateRepository();
-            var employee = new Employee()
-            {
-                Id = Guid.Parse(employeeDto.Id),
-                Name = employeeDto.Name,
-                JobTitle = employeeDto.JobTitle
-            };
-            await repository.Save(employee);
+            //var repository = CreateRepository();
+            //var employee = new Employee()
+            //{
+            //    Id = Guid.Parse(employeeDto.Id),
+            //    Name = employeeDto.Name,
+            //    JobTitle = employeeDto.JobTitle
+            //};
+            //await repository.Save(employee);
 
             return new OkResult();
         }
