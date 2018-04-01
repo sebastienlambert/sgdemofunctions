@@ -20,7 +20,7 @@ namespace SGDemoFunctions.Api
     {
         [FunctionName("HttpGetAllEmployeesFunction_v1")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "v1/employees")]HttpRequest req, 
+            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "v1/employees")]HttpRequest req, 
             TraceWriter log)
         {
             log.Info("Get all employees");

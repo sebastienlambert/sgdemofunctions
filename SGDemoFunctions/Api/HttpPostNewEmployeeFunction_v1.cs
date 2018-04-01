@@ -19,7 +19,7 @@ namespace SGDemoFunctions.Api
     {
         [FunctionName("HttpPostNewEmployeeFunction_v1")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "v1/employees")] EmployeeDto employeeDto,
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = "v1/employees")] EmployeeDto employeeDto,
             TraceWriter log)
         {
             log.Info($"Post employee : {employeeDto.Id}");
