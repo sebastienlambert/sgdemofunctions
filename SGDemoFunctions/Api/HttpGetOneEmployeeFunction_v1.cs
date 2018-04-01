@@ -20,13 +20,13 @@ namespace SGDemoFunctions.Api
         [FunctionName("HttpGetOneEmployeeFunction_v1")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "v1/employees/{employeeId}")]HttpRequest req, 
-            Guid employeeId,
+            string employeeId,
             TraceWriter log)
         {
             log.Info($"Get employee {employeeId}");
 
             var repository = CreateRepository();
-            var employee = await repository.FindOneById(employeeId);
+            var employee = await repository.FindOneById(Guid.Parse(employeeId));
 
             if (employee == null)
             {
