@@ -6,35 +6,43 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.WebJobs.Host;
 using Newtonsoft.Json;
+using System;
 using SGDemoFunctions.Domain;
 using MongoDB.Driver;
 using System.Security.Authentication;
 using SGDemoFunctions.Infrastructure;
 using System.Threading.Tasks;
-using System.Linq;
-using System;
 
 namespace SGDemoFunctions.Api
 {
-    public static class HttpGetAllEmployeesFunction_v1
+    public static class HttpGetOneEmployeeFunction_v1
     {
-        [FunctionName("HttpGetAllEmployeesFunction_v1")]
+        [FunctionName("HttpGetOneEmployeeFunction_v1")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "v1/employees")]HttpRequest req, 
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "v1/employees/{employeeId}")]HttpRequest req, 
+            Guid employeeId,
             TraceWriter log)
         {
-            log.Info("Get all employees");
-            var repository = CreateRepository();
-            var employees = await repository.FindAll();
-            var employeeDtos = employees.Select(e =>
-                new EmployeeDto()
-                {
-                    Id = e.Id.ToString(),
-                    Name = e.Name,
-                    JobTitle = e.JobTitle
-                });
+            log.Info($"Get employee {employeeId}");
 
-            return new OkObjectResult(employeeDtos);
+            var repository = CreateRepository();
+            var employee = await repository.FindOneById(employeeId);
+
+            if (employee == null)
+            {
+                return new NotFoundObjectResult($"Employee not found : {employeeId}");
+            }
+            else
+            {
+                var dto = new EmployeeDto
+                {
+                    Id = employee.Id.ToString(),
+                    Name = employee.Name,
+                    JobTitle = employee.JobTitle
+                };
+
+                return new OkObjectResult(dto);
+            }
         }
 
 
