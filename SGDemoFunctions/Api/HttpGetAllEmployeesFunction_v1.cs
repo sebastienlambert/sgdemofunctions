@@ -41,7 +41,7 @@ namespace SGDemoFunctions.Api
         private static IEmployeeRepository CreateRepository()
         {
             string connectionString =
-                @"mongodb://sgdemomongo:GWw0QSGv9Lz2lrPJaVfzJZHzfuZDDImpbAR88BH2y3JVFG1YtwSLFjdp23bwldP9YqOlzkljtJn9lgfAA36IvQ==@sgdemomongo.documents.azure.com:10255/?ssl=true&replicaSet=globaldb";
+              @"mongodb://sgdemomongodb:E13Dw0NIeYGHEJohNTSsXSwQ7KQVnV73Nkp1k2Z3IRJ05Ol2f1DMDYUhqzrV8N9SqpYvMiNS8zG8pmCsac0J1w==@sgdemomongodb.documents.azure.com:10255/?ssl=true&replicaSet=globaldb";
             MongoClientSettings settings = MongoClientSettings.FromUrl(
               new MongoUrl(connectionString)
             );
