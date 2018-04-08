@@ -11,6 +11,7 @@ using MongoDB.Driver;
 using System.Security.Authentication;
 using System;
 using System.Threading.Tasks;
+using SGDemoFunctions.Infrastructure;
 
 namespace SGDemoFunctions.Api
 {
