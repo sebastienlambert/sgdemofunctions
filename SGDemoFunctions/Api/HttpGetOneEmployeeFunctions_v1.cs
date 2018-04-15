@@ -47,13 +47,14 @@ namespace SGDemoFunctions.Api
         private static IEmployeeRepository CreateRepository()
         {
             string connectionString =
-              @"mongodb://sgdemomongodb:zVtEfsvf15j3BS1iCTRK7NBdU9qE6kv11cg81YGY3YQR5OShIhjvT5ClXuBl3F6st7mykp1DeWlL5CO6ArRokw==@sgdemomongodb.documents.azure.com:10255/?ssl=true&replicaSet=globaldb";
+                 @"mongodb://sgdemocosmodb:mST0GvdcrZY1fgnQdold4m0LihDX8LoY6fGNcQ6Sanp0kWsaV622ZLXAEEdBzSRKFBJnumCe7JIwnRaUCcz4QA==@sgdemocosmodb.documents.azure.com:10255/?ssl=true&replicaSet=globaldb";
             MongoClientSettings settings = MongoClientSettings.FromUrl(
               new MongoUrl(connectionString)
             );
             settings.SslSettings =
               new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
             var mongoClient = new MongoClient(settings);
+
 
             var mongoDatabase = mongoClient.GetDatabase("SgDemo");
             var employeeCollection = mongoDatabase.GetCollection<Employee>("employee");
