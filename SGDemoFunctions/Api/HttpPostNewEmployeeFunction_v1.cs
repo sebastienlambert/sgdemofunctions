@@ -24,7 +24,8 @@ namespace SGDemoFunctions.Api
         {
             log.Info($"Post employee : {employeeDto.Id}");
 
-            var repository = CreateRepository();
+            var mongoCollection = CreateMongoCollection();
+            var repository = new EmployeeRepository(mongoCollection);
             var employee = new Employee()
             {
                 Id = Guid.Parse(employeeDto.Id),
@@ -38,7 +39,7 @@ namespace SGDemoFunctions.Api
 
 
 
-        private static IEmployeeRepository CreateRepository()
+        private static IMongoCollection<Employee> CreateMongoCollection()
         {
             string connectionString =
               @"mongodb://sgdemocosmodb:8TJC8iTjscxp3echRuKuJ4tsBKGHlGPpKb0JKQUxpH5BERlp99L0g7WljGghuT1QNfmHBeMueBrbRzuEfCW3XA==@sgdemocosmodb.documents.azure.com:10255/?ssl=true&replicaSet=globaldb";
@@ -51,8 +52,7 @@ namespace SGDemoFunctions.Api
 
 
             var mongoDatabase = mongoClient.GetDatabase("SgDemo");
-            var employeeCollection = mongoDatabase.GetCollection<Employee>("employee");
-            return new EmployeeRepository(employeeCollection);
+            return mongoDatabase.GetCollection<Employee>("employee");
         }
     }
 }

@@ -24,7 +24,8 @@ namespace SGDemoFunctions.Api
             TraceWriter log)
         {
             log.Info("Get all employees");
-            var repository = CreateRepository();
+            var mongoCollection = CreateMongoCollection();
+            var repository = new EmployeeRepository(mongoCollection);
             var employees = await repository.FindAll();
             var employeeDtos = employees.Select(e =>
                 new EmployeeDto()
@@ -38,10 +39,10 @@ namespace SGDemoFunctions.Api
         }
 
 
-        private static IEmployeeRepository CreateRepository()
+        private static IMongoCollection<Employee> CreateMongoCollection()
         {
             string connectionString =
-    @"mongodb://sgdemocosmodb:8TJC8iTjscxp3echRuKuJ4tsBKGHlGPpKb0JKQUxpH5BERlp99L0g7WljGghuT1QNfmHBeMueBrbRzuEfCW3XA==@sgdemocosmodb.documents.azure.com:10255/?ssl=true&replicaSet=globaldb";
+              @"mongodb://sgdemocosmodb:8TJC8iTjscxp3echRuKuJ4tsBKGHlGPpKb0JKQUxpH5BERlp99L0g7WljGghuT1QNfmHBeMueBrbRzuEfCW3XA==@sgdemocosmodb.documents.azure.com:10255/?ssl=true&replicaSet=globaldb";
             MongoClientSettings settings = MongoClientSettings.FromUrl(
               new MongoUrl(connectionString)
             );
@@ -49,9 +50,9 @@ namespace SGDemoFunctions.Api
               new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
             var mongoClient = new MongoClient(settings);
 
+
             var mongoDatabase = mongoClient.GetDatabase("SgDemo");
-            var employeeCollection = mongoDatabase.GetCollection<Employee>("employee");
-            return new EmployeeRepository(employeeCollection);
+            return mongoDatabase.GetCollection<Employee>("employee");
         }
     }
 }
