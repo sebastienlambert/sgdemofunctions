@@ -11,12 +11,13 @@ namespace SGDemoFunctions.Infrastructure
         public static MongoClient Create()
         {
             string connectionString =
-                @"mongodb://sgdemocosmodb:xgVR8phzKbf4q5q69OYFqI6OVfPmuNEEbmAojXVxsdGYfkln8T55jyrVTZCCc7saUWgeQNiHhhpb2lI2AnbiqA==@sgdemocosmodb.documents.azure.com:10255/?ssl=true&replicaSet=globaldb";
+     @"mongodb://sgdemocosmodb2:zE5HVibUKyX4wvm7jEDcpEugNsrJehuTk4U9VroTjfcdKvZrJ2dJmzjLz7aT6fJ8ojP27hX3Y3oCTijChkTfHw==@sgdemocosmodb2.documents.azure.com:10255/?ssl=true&replicaSet=globaldb";
             MongoClientSettings settings = MongoClientSettings.FromUrl(
               new MongoUrl(connectionString)
             );
             settings.SslSettings =
               new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
+            var mongoClient = new MongoClient(settings);
             return new MongoClient(settings);
 
         }
