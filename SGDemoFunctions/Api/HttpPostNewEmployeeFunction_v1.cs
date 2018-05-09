@@ -41,16 +41,7 @@ namespace SGDemoFunctions.Api
 
         private static IMongoCollection<Employee> CreateMongoCollection()
         {
-            string connectionString =
-    @"mongodb://sgdemocosmodb:xgVR8phzKbf4q5q69OYFqI6OVfPmuNEEbmAojXVxsdGYfkln8T55jyrVTZCCc7saUWgeQNiHhhpb2lI2AnbiqA==@sgdemocosmodb.documents.azure.com:10255/?ssl=true&replicaSet=globaldb";
-            MongoClientSettings settings = MongoClientSettings.FromUrl(
-              new MongoUrl(connectionString)
-            );
-            settings.SslSettings =
-              new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
-            var mongoClient = new MongoClient(settings);
-
-
+            var mongoClient = MongoClientFactory.Create();
             var mongoDatabase = mongoClient.GetDatabase("SgDemo");
             return mongoDatabase.GetCollection<Employee>("employee");
         }
