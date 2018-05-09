@@ -48,7 +48,7 @@ namespace SGDemoFunctions.Api
         private static IMongoCollection<Employee> CreateMongoCollection()
         {
             string connectionString =
-              @"mongodb://sgdemocosmodb2:XbawF78h1wU5FzOv84kjk4urMgApRlOvpMKJfgDjicjZh55ACYmSpIqrnaoYLogojDWtW0apCYkMOkLChHBC0Q==@sgdemocosmodb2.documents.azure.com:10255/?ssl=true&replicaSet=globaldb";
+   @"mongodb://sgdemocosmodb:xgVR8phzKbf4q5q69OYFqI6OVfPmuNEEbmAojXVxsdGYfkln8T55jyrVTZCCc7saUWgeQNiHhhpb2lI2AnbiqA==@sgdemocosmodb.documents.azure.com:10255/?ssl=true&replicaSet=globaldb";
             MongoClientSettings settings = MongoClientSettings.FromUrl(
               new MongoUrl(connectionString)
             );
